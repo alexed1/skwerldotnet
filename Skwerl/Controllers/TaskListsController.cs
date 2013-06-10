@@ -16,7 +16,12 @@ namespace Skwerl.Controllers
         //
         // GET: /TaskLists/
 
-        public ActionResult Index()
+        public ActionResult ViewMaps()
+        {
+            return View();
+        }
+
+        public ViewResult Index()
         {
             return View(db.TaskLists.ToList());
         }
