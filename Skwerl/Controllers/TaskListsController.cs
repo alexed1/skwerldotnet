@@ -11,19 +11,23 @@ namespace Skwerl.Controllers
 {
     public class TaskListsController : Controller
     {
-        private UsersContext db = new UsersContext();
+        // private UsersContext db = new UsersContext();
+        public ITaskListRepository _repository;
+
+        public TaskListsController() : this(new TaskListRepository()) { }
+
+
 
         //
         // GET: /TaskLists/
-
-        public ActionResult ViewMaps()
+        public TaskListsController(ITaskListRepository repository)
         {
-            return View();
+            _repository = repository;
         }
 
-        public ViewResult Index()
+        public ActionResult Index()
         {
-            return View(db.TaskLists.ToList());
+            return View(_repository.Index());
         }
 
         //
@@ -31,7 +35,7 @@ namespace Skwerl.Controllers
 
         public ActionResult Details(string id = null)
         {
-            TaskList tasklist = db.TaskLists.Find(id);
+            TaskList tasklist = _repository.GetTaskListbyID(id); //db.TaskLists.Find(id);
             if (tasklist == null)
             {
                 return HttpNotFound();
@@ -55,9 +59,8 @@ namespace Skwerl.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.TaskLists.Add(tasklist);
                 tasklist.ID = Guid.NewGuid().ToString();
-                Validated.SaveIt(db);
+                _repository.Create(tasklist);
                 return RedirectToAction("Index");
             }
 
@@ -69,7 +72,7 @@ namespace Skwerl.Controllers
 
         public ActionResult Edit(string id = null)
         {
-            TaskList tasklist = db.TaskLists.Find(id);
+            TaskList tasklist = _repository.GetTaskListbyID(id);
             if (tasklist == null)
             {
                 return HttpNotFound();
@@ -85,8 +88,7 @@ namespace Skwerl.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tasklist).State = EntityState.Modified;
-                db.SaveChanges();
+                _repository.Update(tasklist);
                 return RedirectToAction("Index");
             }
             return View(tasklist);
@@ -97,7 +99,7 @@ namespace Skwerl.Controllers
 
         public ActionResult Delete(string id = null)
         {
-            TaskList tasklist = db.TaskLists.Find(id);
+            TaskList tasklist = _repository.GetTaskListbyID(id);
             if (tasklist == null)
             {
                 return HttpNotFound();
@@ -111,16 +113,17 @@ namespace Skwerl.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(string id)
         {
-            TaskList tasklist = db.TaskLists.Find(id);
-            db.TaskLists.Remove(tasklist);
-            db.SaveChanges();
+            TaskList tasklist = _repository.GetTaskListbyID(id);
+            _repository.Delete(tasklist);
+
             return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            _repository.Dispose();
             base.Dispose(disposing);
         }
+
     }
 }

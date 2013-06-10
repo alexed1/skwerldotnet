@@ -60,7 +60,6 @@
 \\psf\Home\Documents\Skwerl\Skwerl\bin\Microsoft.Web.Infrastructure.dll
 \\psf\Home\Documents\Skwerl\Skwerl\bin\Microsoft.Web.WebPages.OAuth.dll
 \\psf\Home\Documents\Skwerl\Skwerl\bin\Newtonsoft.Json.dll
-\\psf\Home\Documents\Skwerl\Skwerl\bin\nunit.framework.dll
 \\psf\Home\Documents\Skwerl\Skwerl\bin\System.Net.Http.Formatting.dll
 \\psf\Home\Documents\Skwerl\Skwerl\bin\System.Web.Helpers.dll
 \\psf\Home\Documents\Skwerl\Skwerl\bin\System.Web.Http.dll
@@ -74,7 +73,6 @@
 \\psf\Home\Documents\Skwerl\Skwerl\bin\WebGrease.dll
 \\psf\Home\Documents\Skwerl\Skwerl\bin\WebMatrix.Data.dll
 \\psf\Home\Documents\Skwerl\Skwerl\bin\WebMatrix.WebData.dll
-\\psf\Home\Documents\Skwerl\Skwerl\bin\nunit.framework.xml
 \\psf\Home\Documents\Skwerl\Skwerl\bin\EntityFramework.xml
 \\psf\Home\Documents\Skwerl\Skwerl\bin\Newtonsoft.Json.xml
 \\psf\Home\Documents\Skwerl\Skwerl\bin\System.Net.Http.Formatting.xml

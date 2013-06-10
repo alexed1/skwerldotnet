@@ -12,4 +12,5 @@ namespace Skwerl.Models
         public string Name { get; set; }
         public Task Task { get; set; }
     }
+
 }
